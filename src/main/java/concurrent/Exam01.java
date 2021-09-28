@@ -1,5 +1,8 @@
 package concurrent;
 
+import org.openjdk.jol.info.ClassLayout;
+import test.A;
+
 /**
  * @author zhaoqi.wang
  * @date 2021/9/27
@@ -7,6 +10,8 @@ package concurrent;
 public class Exam01 {
 
     public static void main(String[] args) {
-        System.out.println(1);
+        A a = new A();
+        System.out.println(ClassLayout.parseInstance(a).toPrintable());
     }
+
 }
