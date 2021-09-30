@@ -1,5 +1,6 @@
 package concurrent;
 
+
 import org.openjdk.jol.info.ClassLayout;
 import test.A;
 
@@ -9,9 +10,29 @@ import test.A;
  */
 public class Exam01 {
 
-    public static void main(String[] args) {
-        A a = new A();
-        System.out.println(ClassLayout.parseInstance(a).toPrintable());
+    public static void main(String[] args) throws InterruptedException {
+        final A a = new A();
+
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("t1  " + ClassLayout.parseInstance(a).toPrintable());
+                a.setA(1);
+            }
+        });
+
+        Thread t2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("t2  " + ClassLayout.parseInstance(a).toPrintable());
+                a.setA(2);
+            }
+        });
+
+        t1.start();
+        t2.start();
     }
+
+
 
 }
