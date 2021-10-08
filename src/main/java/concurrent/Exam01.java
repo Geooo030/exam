@@ -16,16 +16,18 @@ public class Exam01 {
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("t1  " + ClassLayout.parseInstance(a).toPrintable());
-                a.setA(1);
+                System.out.println("tA time: "+ System.currentTimeMillis() + ClassLayout.parseInstance(a).toPrintable());
+                a.setA("thread A" , 1);
+                System.out.println("release thread A:" + ClassLayout.parseInstance(a).toPrintable());
             }
         });
 
         Thread t2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                System.out.println("t2  " + ClassLayout.parseInstance(a).toPrintable());
-                a.setA(2);
+                System.out.println("tB time: " + System.currentTimeMillis() + ClassLayout.parseInstance(a).toPrintable());
+                a.setA("thread B", 2);
+                System.out.println("release thread B:" + ClassLayout.parseInstance(a).toPrintable());
             }
         });
 
